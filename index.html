@@ -17,25 +17,38 @@
     <div id="game">
         <h1>Timer Trivia</h1>
 
-        <button type="button" id="start">Start</button>
+        <button type="button" id="start">Start Game!</button>
+
+        <div id="time-show">Time Remaining: <span id="seconds-left">60</span> Seconds</div>
 
         <div id="question-box">
 
-            <div id="time-show">Time Remaining: <span id="seconds-left">X</span> Seconds</div>
 
-            <div id="current-question"></div>
-
+            <!-- new question function will generate this html structure for each question, 
+                empty it on answer and call the answer show function -->
+            <!-- <div id="current-question">test question!</div>
+            <br>
             <div id="answers">
                 <div id="answer-one"></div>
                 <div id="answer-two"></div>
                 <div id="answer-three"></div>
                 <div id="answer-four"></div>
-            </div>
+            </div> -->
+
+
+            <!-- answer show function will generate this html structure on a timer,
+            then empty itself and call the next question -->
+
+
 
         </div>
 
         <br>
         <button type="button" id="test-button">test</button>
+
+        <button type="button" id="test-button-two">test two</button>
+
+        <button type="button" id="log-button">console log</button>
 
 
     </div>
