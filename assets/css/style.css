@@ -3,10 +3,13 @@
 }
 #game {
     text-align: center;
-    width: 50rem;
     height: 40rem;
     margin: auto;
     margin-top: 5rem;
     border: solid 2px black;
     padding: 2rem;
+}
+
+button {
+    margin: 5px;
 }

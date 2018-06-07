@@ -27,9 +27,13 @@ window.onload = function () {
         }
     ]
 
+    var savedArray = $.extend(true, {}, questionArray); //copies array to save answers lost to splicing
+
     var currentQuestion = 0; //used to parse through array
-    var correct = 0;  //tracking answer total
-    var incorrect = 0;
+    var totalQuestions = questionArray.length; //checks for game end
+    var unanswered = questionArray.length;
+    var answersRight = 0;  //tracking answer total
+    var answersWrong = 0;
     var questionBox = $("#question-box"); //div for displaying questions and answer info
 
     function randomAnswers() {
@@ -39,40 +43,70 @@ window.onload = function () {
     }
     console.log(questionArray[currentQuestion].answers.length);
 
-    var getQuestion = function() {
-        triviaTimer.start();
-        questionBox.empty();
-        var newQuestion = $("<div>");
-        var answerButtons = $("<button>");
+    var getQuestion = function () {
+        if (currentQuestion < totalQuestions) {
+            triviaTimer.start();
+            questionBox.empty();
+            var newQuestion = $("<div>").appendTo(questionBox)
 
-        newQuestion.append(questionArray[currentQuestion].question+"<br>").appendTo(questionBox);
+            $("<div>").append(questionArray[currentQuestion].question + "<br>").addClass("current-question").appendTo(newQuestion);
 
-        //makes 4 buttons for each answer
-        for (i=0; i<4; i++) {
-            $("<button>").append(randomAnswers()).addClass("answer-button").appendTo(newQuestion);
-            $("<br>").appendTo(newQuestion);
+            //makes 4 buttons for each answer
+            for (i = 0; i < 4; i++) {
+                $("<button>").append(randomAnswers()).addClass("answer-button").appendTo(newQuestion);
+                $("<br>").appendTo(newQuestion);
+            }
+        }
+
+        else {
+            gameOver();
         }
     }
 
-    var showAnswer = function(guess) {
+    var showAnswer = function (guess) {
         questionBox.empty();
-        triviaTimer.stop(); 
+        triviaTimer.stop();
         console.log(guess);
-        console.log(questionArray[currentQuestion].correct); 
+        console.log(questionArray[currentQuestion].correct);
         if (guess === questionArray[currentQuestion].correct) {
             //show correct message + answer info here
-            questionBox.append(questionArray[currentQuestion].info);
+            $("<div>").append("You are correct!").appendTo(questionBox);
+            answersRight++;
         }
 
         else {
             //show incorrect answer message + explanation
+            $("<div>").append("That is incorrect!").appendTo(questionBox);
+            answersWrong++;
         }
+        $("<div>").append(questionArray[currentQuestion].info).appendTo(questionBox)
+        unanswered--;
         currentQuestion++;
         setTimeout(getQuestion, 5000);
     }
 
-    var gameOver = function() {
+    var gameOver = function () {
+        questionBox.empty();
+        triviaTimer.stop();
+        questionArray = $.extend(true, {}, savedArray);
 
+
+        //show right, wrong, unanswered questions
+        $("<div>").append("Correct answers: " + answersRight).appendTo(questionBox);
+        $("<div>").append("Incorrect answers: " + answersWrong).appendTo(questionBox);
+        $("<div>").append("Unanswered questions: " + unanswered).appendTo(questionBox);
+        //ask to restart
+        $("<button>").append("Want to play again?").addClass("replay-button").appendTo(questionBox);
+    }
+
+    var newGame = function () {
+        questionBox.empty();
+        triviaTimer.time = 60;
+        answersRight = 0;
+        answersWrong = 0;
+        currentQuestion = 0;
+        unanswered = questionArray.length;
+        getQuestion();
     }
 
 
@@ -103,22 +137,20 @@ window.onload = function () {
         //count function to decrement remaining time
         count: function () {
             if (triviaTimer.time > 0) {
-            triviaTimer.time--;
-            $("#seconds-left").text(triviaTimer.time);
+                triviaTimer.time--;
+                $("#seconds-left").text(triviaTimer.time);
             }
 
             else {
-                //call game end function
+                gameOver();
             }
         }
-
-
     };
 
     $("#time-show").hide();
 
     $("#start").on("click", function () {
-        $("#start").hide();       
+        $("#start").hide();
 
         getQuestion();
 
@@ -131,8 +163,12 @@ window.onload = function () {
 
     });
 
-    $("#question-box").on("click", ".answer-button", function(){
+    $("#question-box").on("click", ".answer-button", function () {
         showAnswer($(this).text());
+    });
+
+    $("#question-box").on("click", ".replay-button", function () {
+        newGame();
     });
 
     // $("#test-button").on("click", function() {
@@ -149,8 +185,7 @@ window.onload = function () {
     });
 
     $("#log-button").on("click", function () {
-        getQuestion();
-     });
-
+        console.log(unanswered);
+    });
 
 }
