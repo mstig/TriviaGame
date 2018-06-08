@@ -185,7 +185,7 @@ window.onload = function () {
     });
 
     $("#log-button").on("click", function () {
-        console.log(unanswered);
+        console.log(questionArray[0].correct);
     });
 
 }
