@@ -1,6 +1,11 @@
 * {
     box-sizing: border-box;
 }
+
+body {
+    background-image: url("../images/bgimg.jpg");
+    background-size: 100%;
+}
 #game {
     text-align: center;
     height: 40rem;
@@ -12,4 +17,11 @@
 
 button {
     margin: 5px;
+}
+
+#game{
+    background: rgba(111,111,133, 0.5);
+    color: rgb(207, 207, 207);
+    border: 8px double darkred;
+    border-radius: 50px 20px;
 }
