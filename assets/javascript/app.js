@@ -5,25 +5,52 @@ window.onload = function () {
         //answer is always index 0 of answer array
         //use a random splice function to change display order
         {
-            question: "Test question one",
-            answers: ["zero", "one", "two", "three"],
-            correct: "zero",
-            info: "The answer is this because XXX q1"
-
+            question: "Who was the final act to perform at Woodstock?",
+            answers: ["Jimi Hendrix", "The Grateful Dead", "The Who", "Crosby, Stills, Nash, and Young"],
+            correct: "Jimi Hendrix",
+            info: "Jimi Hendrix was the final performance of Woodstock, taking the stage at 8 AM after rain delays."
         },
         {
-            question: "Test question two",
-            answers: ["zero", "one", "two", "three"],
-            correct: "zero",
-            info: "The answer is this because XXX q2"
-
+            question: "Which person was NOT a member of The Beatles?",
+            answers: ["Billy Preston", "Ringo Starr", "George Harrison", "Paul McCartney"],
+            correct: "Billy Preston",
+            info: "Billy Preston was never an official member of the Beatles, but did collaborate with the band and was sometimes referred to as the 'Fifth Beatle.'"
         },
         {
-            question: "Test question three",
-            answers: ["zero", "one", "two", "three"],
-            correct: "zero",
-            info: "The answer is this because XXX q3"
-
+            question: "Which artist has the highest selling album in the world?",
+            answers: ["Michael Jackson", "The Beatles", "The Eagles", "Garth Brooks"],
+            correct: "Michael Jackson",
+            info: "Michael Jackson's Thriller, released in 1982, is the best selling album of all time."
+        },
+        {
+            question: "Which artist/group was known to perform for inmates at various prisons?",
+            answers: ["Johnny Cash", "Bob Dylan", "The Sex Pistols", "The Doors"],
+            correct: "Johhny Cash",
+            info: "Johnny Cash performed several prison showns, releasing popular live albums from Folsom and San Quentin prisons."
+        },
+        {
+            question: "Who wrote the song 'Layla', about his love for the wife of a close friend?",
+            answers: ["Eric Clapton", "Freddie Mercury", "John Lennon", "Jim Morrison"],
+            correct: "Eric Clapton",
+            info: "Eric Clapton wrote Layla about Pattie Boyd, the wife of Beatles member George Harrison."
+        },
+        {
+            question: "Ozzy Osbourne and Ronnie James Dio were lead singers of which band?",
+            answers: ["Black Sabbath", "AC/DC", "The Scorpions", "The Black Crowes"],
+            correct: "Black Sabbath",
+            info: "Black Sabbath fired Ozzy Osbourne in 1979 and hired Ronnie James Dio, though Osbourne would later return to the band."
+        },
+        {
+            question: "Which album was the very first to be pressed as a CD in the United States?",
+            answers: ["Born in the USA (Bruce Springsteen)", "The Dark Side of the Moon (Pink Floyd)", "Pet Sounds (The Beach Boys)", "Texas Flood (Stevie Ray Vaughan)"],
+            correct: "Born in the USA (Bruce Springsteen)",
+            info: "Born in the USA by Bruce Springsteen was the first CD pressed in America, in September 1984."
+        },
+        {
+            question: "Who is the only original member of Guns N' Roses to graduate with a high school diploma?",
+            answers: ["Izzy Stradlin", "Axl Rose", "Slash", "Duff McKagan"],
+            correct: "Izzy Stradlin",
+            info: "Izzy Stradlin was the only original member of the band to graduate high school."
         }
     ]
 
@@ -109,9 +136,6 @@ window.onload = function () {
         getQuestion();
     }
 
-
-
-
     //timer object & variables
     var countdown;
     var timerRunning = false;
@@ -169,23 +193,6 @@ window.onload = function () {
 
     $("#question-box").on("click", ".replay-button", function () {
         newGame();
-    });
-
-    // $("#test-button").on("click", function() {
-    //     console.log(questionArray[0].question)
-    // });
-
-    $("#test-button").on("click", function () {
-        triviaTimer.stop();
-    });
-
-    $("#test-button-two").on("click", function () {
-        questionBox.empty();
-        setTimeout(getQuestion, 5000);
-    });
-
-    $("#log-button").on("click", function () {
-        console.log(questionArray[0].correct);
     });
 
 }
