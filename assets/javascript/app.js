@@ -25,7 +25,7 @@ window.onload = function () {
         {
             question: "Which artist/group was known to perform for inmates at various prisons?",
             answers: ["Johnny Cash", "Bob Dylan", "The Sex Pistols", "The Doors"],
-            correct: "Johhny Cash",
+            correct: "Johnny Cash",
             info: "Johnny Cash performed several prison showns, releasing popular live albums from Folsom and San Quentin prisons."
         },
         {
